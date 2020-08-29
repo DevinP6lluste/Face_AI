@@ -37,10 +37,10 @@ while True:
         smiles = smile_detector.detectMultiScale(face_grayscale, scaleFactor=1.7, minNeighbors=20)
 
         # Find all smiles in the face
-        #for (x_, y_, w_, h_) in smiles:
+        for (x_, y_, w_, h_) in smiles:
 
             # Draw a rectangle around the smile
-             #cv2.rectangle(the_face, (x_, y_), (x_ + w_, y_ + h_), (50, 50, 200), 4)
+            cv2.rectangle(the_face, (x_, y_), (x_ + w_, y_ + h_), (50, 50, 200), 4)
 
         # Label this face as smiling
         if len(smiles) > 0:
@@ -52,11 +52,12 @@ while True:
     cv2.imshow('Smile Detection', frame)
 
     # Display
-    cv2.waitKey(1)
+    key = cv2.waitKey(1)
+
+    # Stop if Q key is pressed
+    if key==81 or key==113:
+        break
 
 # Clean up
 webcam.release()
 cv2.destroyAllWindows()
-
-# Code ran without errors
-print('Code works!')
